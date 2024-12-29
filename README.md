@@ -100,7 +100,7 @@ npm run test:watch
    - Only one episode has `live` set to `true` at any time.
 
 3. **Environment Configuration**:
-   - A valid `.env` file with `API_BASE_URL` is required. Defaults or error handling should be in place if missing.
+   - A valid `.env` file with `API_BASE_URL` is required. Defaults or error handling should be in place if missing. **For simplicity of this assessment, environment configuration (specifically the use of a `.env` file and `API_BASE_URL`) has not been implemented.** 
 
 4. **Utility Functions**:
    - Validation logic (`validateField`, `validateDateOrder`) is robust and handles edge cases (null, empty strings).
@@ -113,7 +113,6 @@ npm run test:watch
    - `jest` for testing.
    - `jest-cucumber` for BDD.
    - `axios` for HTTP requests.
-   - `dotenv` for environment variable management.
 
 3. **API Access**:
    - The API must be reachable.
