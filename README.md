@@ -22,8 +22,8 @@ Ensure the following tools are installed:
 Clone the repository to your local machine:
 
 ```
-git clone <https://github.com/EmmanuelMath/BBC_iPlayer_automation_project.git>
-cd <BBC_iPlayer_automation_project>
+git clone https://github.com/EmmanuelMath/BBC_iPlayer_automation_project.git
+cd BBC_iPlayer_automation_project
 ```
 
 
