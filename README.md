@@ -90,49 +90,37 @@ npm run test:watch
 ## **Assumptions and External Dependencies**
 
 ### **Assumptions**
-1. **API Availability**: 
-   - API endpoints (`/ibltest`, `/ibltest/2023-09-11`) are accessible and operational.
-   - API responses adhere to the expected structure (`schedule.elements`, `episode.type`, `episode.title`).
 
-2. **Response Data**:
-   - `schedule.elements` is an array containing valid fields (`id`, `type`, `title`, etc.).
-   - Dates (`transmission_start`, `transmission_end`) are in a valid and comparable format.
-   - Only one episode has `live` set to `true` at any time.
-
-3. **Environment Configuration**:
-   - A valid `.env` file with `API_BASE_URL` is required. Defaults or error handling should be in place if missing. **For simplicity of this assessment, environment configuration (specifically the use of a `.env` file and `API_BASE_URL`) has not been implemented.** 
-
-4. **Utility Functions**:
-   - Validation logic (`validateField`, `validateDateOrder`) is robust and handles edge cases (null, empty strings).
+1. The API endpoints are functional and provide data in the expected JSON structure.
+2. Dates are formatted correctly and are comparable for validation purposes.
+3. At most one episode has `live: true`.
+4. Test environment has network access to API endpoints.
 
 ### **External Dependencies**
-1. **Node.js**:
-   - Node.js (v16 or higher) and npm/yarn for dependency management.
+1. **Node.js v16+** for runtime and dependency management.
+2. **npm Packages:**
+   - `jest` for testing
+   - `jest-cucumber` for BDD
+   - `axios` for HTTP requests
+3. Reliable API connectivity for live testing or proper mocks for offline development.
 
-2. **npm Packages**:
-   - `jest` for testing.
-   - `jest-cucumber` for BDD.
-   - `axios` for HTTP requests.
+   ---
 
-3. **API Access**:
-   - The API must be reachable.
+### **Room For Improvement**
+- **Containerisation:** Use Docker to ensure consistent development, testing, and production environments.
+- **Error Handling:** Centralize error handling logic in `apiClient` for improved readability and maintainability.
+- **Environment Variables:** Use `.env` files to manage sensitive values (API endpoints).
+- **API Mocking:** Simulate API responses to avoid dependency on external services during testing.
+- **CI/CD Pipelines:** Automate testing and deployment processes to ensure code quality and accelerate the development lifecycle.
 
-4. **System Requirements**:
-   - Network access to API endpoints.
-   - Sufficient memory and CPU for testing large datasets.
-
-5. **Execution Environment**:
-   - Tests run locally or in CI/CD pipelines with Node.js installed.
-   - Firewalls or proxies should not block API access.
+---
 
 
 ## **Resources**
 
-- **JavaScript**:[JavaScript Documentation - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- **JavaScript**: [JavaScript Documentation - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-- **Cucumber (Jest-Cucumber)**:
-
-  [Cucumber Documentation](https://cucumber.io/docs/)  
+- **Cucumber (Jest-Cucumber)**: [Cucumber Documentation](https://cucumber.io/docs/)  
   [Jest-Cucumber Documentation](https://github.com/bencompton/jest-cucumber)
 
 - **Axios**: [Axios Documentation](https://axios-http.com/docs/intro)
@@ -146,24 +134,9 @@ npm run test:watch
 - The API endpoint returns data in a consistent JSON format.
 - All dates and times are represented in UTC.
 - The meaning and format of specific data fields are documented elsewhere.
-- writing test in feature file in Gherkin language.
+- Writing test in feature file in Gherkin language.
 
-### **Feature: Scheduled Broadcast Timing**
-
-*   The API provides `scheduled_start`/`scheduled_end` and `transmission_start`/`transmission_end` timestamps.
-*   Timestamps represent planned and actual broadcast times, respectively.
-*   Timestamps are in UTC.
-*   The test allows for minor transmission delays.
-
-### **Feature: Episode Metadata Validation**
-
-*   Episode data is retrievable by `episode_id`.
-*   `title`, `subtitle`, and `large synopsis` are key metadata fields.
-*   `large synopsis` is expected to contain specific content.
-
-### **Feature: Master Brand Attribution**
-
-*   Episode data includes a `master_brand` object.
-*   `master_brand` contains `titles`, `ident_id`, and `attribution`.
-*   These fields have consistent values for a given master brand.
-
+**Assumptions for Test Cases**
+- API provides timestamps (`scheduled_start`, `scheduled_end`, etc.) in UTC.
+- Episode metadata fields like `title` and `synopsis` are consistently available.
+- Master brand details (`titles`, `ident_id`, etc.) are accurate and consistent.
