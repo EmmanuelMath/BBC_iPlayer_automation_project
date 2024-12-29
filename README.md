@@ -22,15 +22,15 @@ Ensure the following tools are installed:
 Clone the repository to your local machine:
 
 ```
-git clone https://github.com/EmmanuelMath/BBC_iPlayer_automation_project.git
-cd BBC_iPlayer_automation_project
+git clone <https://github.com/EmmanuelMath/BBC_iPlayer_automation_project.git>
+cd <BBC_iPlayer_automation_project>
 ```
 
 
 ### **2. Install Dependencies**
 Install the required Node.js packages:
 ```
-npm install 
+install npm 
 ```
 
 ## **Running Tests**
@@ -64,9 +64,6 @@ npm run test:watch
 
 ```
 .
-├── Part_2_Functional_Manual_Testing/
-│   ├── functionalManualTesting.feature
-│
 ├── features/
 │   ├── apiStatus.feature
 │   ├── errorHandling.feature
@@ -87,56 +84,43 @@ npm run test:watch
 └── jest.config.js.json                 
 
 ```
+
 ## **Assumptions and External Dependencies**
 
 ### **Assumptions**
+1. **API Availability**: 
+   - API endpoints (`/ibltest`, `/ibltest/2023-09-11`) are accessible and operational.
+   - API responses adhere to the expected structure (`schedule.elements`, `episode.type`, `episode.title`).
 
-1. The API endpoints are functional and provide data in the expected JSON structure.
-2. Dates are formatted correctly and are comparable for validation purposes.
-3. At most one episode has `live: true`.
-4. Test environment has network access to API endpoints.
+2. **Response Data**:
+   - `schedule.elements` is an array containing valid fields (`id`, `type`, `title`, etc.).
+   - Dates (`transmission_start`, `transmission_end`) are in a valid and comparable format.
+   - Only one episode has `live` set to `true` at any time.
+
+3. **Environment Configuration**:
+   - A valid `.env` file with `API_BASE_URL` is required. Defaults or error handling should be in place if missing.
+
+4. **Utility Functions**:
+   - Validation logic (`validateField`, `validateDateOrder`) is robust and handles edge cases (null, empty strings).
 
 ### **External Dependencies**
-1. **Node.js v16+** for runtime and dependency management.
-2. **npm Packages:**
-   - `jest` for testing
-   - `jest-cucumber` for BDD
-   - `axios` for HTTP requests
-3. Reliable API connectivity for live testing or proper mocks for offline development.
+1. **Node.js**:
+   - Node.js (v16 or higher) and npm/yarn for dependency management.
 
-   ---
+2. **npm Packages**:
+   - `jest` for testing.
+   - `jest-cucumber` for BDD.
+   - `axios` for HTTP requests.
+   - `dotenv` for environment variable management.
 
-### **Room For Improvement**
-- **Containerisation:** Use Docker to ensure consistent development, testing, and production environments.
-- **Error Handling:** Centralize error handling logic in `apiClient` for improved readability and maintainability.
-- **Environment Variables:** Use `.env` files to manage sensitive values (API endpoints).
-- **API Mocking:** Simulate API responses to avoid dependency on external services during testing.
-- **CI/CD Pipelines:** Automate testing and deployment processes to ensure code quality and accelerate the development lifecycle.
+3. **API Access**:
+   - The API must be reachable.
 
----
+4. **System Requirements**:
+   - Network access to API endpoints.
+   - Sufficient memory and CPU for testing large datasets.
 
+5. **Execution Environment**:
+   - Tests run locally or in CI/CD pipelines with Node.js installed.
+   - Firewalls or proxies should not block API access.
 
-## **Resources**
-
-- **JavaScript**: [JavaScript Documentation - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-
-- **Cucumber (Jest-Cucumber)**: [Cucumber Documentation](https://cucumber.io/docs/)  
-  [Jest-Cucumber Documentation](https://github.com/bencompton/jest-cucumber)
-
-- **Axios**: [Axios Documentation](https://axios-http.com/docs/intro)
-
-- **Jest**: [Jest Documentation](https://jestjs.io/docs/getting-started)
-
----
-## **Assumptions for Part 2: Functional Manual Testing**
-
-- The user retrieving the TV schedule has the necessary permissions to access the data.
-- The API endpoint returns data in a consistent JSON format.
-- All dates and times are represented in UTC.
-- The meaning and format of specific data fields are documented elsewhere.
-- Writing test in feature file in Gherkin language.
-
-**Assumptions for Test Cases**
-- API provides timestamps (`scheduled_start`, `scheduled_end`, etc.) in UTC.
-- Episode metadata fields like `title` and `synopsis` are consistently available.
-- Master brand details (`titles`, `ident_id`, etc.) are accurate and consistent.

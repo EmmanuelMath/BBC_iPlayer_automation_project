@@ -24,9 +24,10 @@ defineFeature(feature, (test) => {
         });
 
         and(/^the error object should have properties "(.*)" and "(.*)"$/, async (property1, property2) => {
-            errorResponse = response.data?.error
-            expect(errorResponse).toHaveProperty(property1)
-            expect(errorResponse).toHaveProperty(property2)
+            errorResponse = response.data.error
+            expect(errorResponse[property1]).toBeDefined();
+            expect(errorResponse[property2]).toBeDefined();
+
         });
     });
 });
