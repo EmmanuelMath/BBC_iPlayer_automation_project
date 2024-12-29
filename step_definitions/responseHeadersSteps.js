@@ -12,7 +12,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^the response headers should contain a "(.*)" field$/, async (date) => {
-        expect(response.headers[date]).toBeDefined();
+      expect(response.headers[date]).toBeDefined();
     });
   });
 });
