@@ -30,7 +30,7 @@ cd <BBC_iPlayer_automation_project>
 ### **2. Install Dependencies**
 Install the required Node.js packages:
 ```
-install npm 
+npm install 
 ```
 
 ## **Running Tests**
@@ -64,6 +64,9 @@ npm run test:watch
 
 ```
 .
+├── Part_2_Functional_Manual_Testing/
+│   ├── functionalManualTesting.feature
+│
 ├── features/
 │   ├── apiStatus.feature
 │   ├── errorHandling.feature
@@ -84,7 +87,6 @@ npm run test:watch
 └── jest.config.js.json                 
 
 ```
-
 ## **Assumptions and External Dependencies**
 
 ### **Assumptions**
@@ -123,4 +125,46 @@ npm run test:watch
 5. **Execution Environment**:
    - Tests run locally or in CI/CD pipelines with Node.js installed.
    - Firewalls or proxies should not block API access.
+
+
+## **Resources**
+
+- **JavaScript**:[JavaScript Documentation - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+- **Cucumber (Jest-Cucumber)**:
+
+  [Cucumber Documentation](https://cucumber.io/docs/)  
+  [Jest-Cucumber Documentation](https://github.com/bencompton/jest-cucumber)
+
+- **Axios**: [Axios Documentation](https://axios-http.com/docs/intro)
+
+- **Jest**: [Jest Documentation](https://jestjs.io/docs/getting-started)
+
+---
+## **Assumptions for Part 2: Functional Manual Testing**
+
+- The user retrieving the TV schedule has the necessary permissions to access the data.
+- The API endpoint returns data in a consistent JSON format.
+- All dates and times are represented in UTC.
+- The meaning and format of specific data fields are documented elsewhere.
+- writing test in feature file in Gherkin language.
+
+### **Feature: Scheduled Broadcast Timing**
+
+*   The API provides `scheduled_start`/`scheduled_end` and `transmission_start`/`transmission_end` timestamps.
+*   Timestamps represent planned and actual broadcast times, respectively.
+*   Timestamps are in UTC.
+*   The test allows for minor transmission delays.
+
+### **Feature: Episode Metadata Validation**
+
+*   Episode data is retrievable by `episode_id`.
+*   `title`, `subtitle`, and `large synopsis` are key metadata fields.
+*   `large synopsis` is expected to contain specific content.
+
+### **Feature: Master Brand Attribution**
+
+*   Episode data includes a `master_brand` object.
+*   `master_brand` contains `titles`, `ident_id`, and `attribution`.
+*   These fields have consistent values for a given master brand.
 
